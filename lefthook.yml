@@ -1,0 +1,17 @@
+# Git hooks. Install once with: lefthook install
+pre-commit:
+  parallel: false
+  commands:
+    size:
+      run: sh scripts/check-file-size.sh {staged_files}
+    format:
+      glob: "*.java"
+      run: ./mvnw -q -B spotless:apply && git add {staged_files}
+    lint:
+      glob: "*.java"
+      run: ./mvnw -q -B checkstyle:check
+
+commit-msg:
+  commands:
+    conventional:
+      run: sh scripts/check-commit-msg.sh {1}
