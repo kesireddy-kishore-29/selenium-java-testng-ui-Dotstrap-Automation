@@ -1,0 +1,17 @@
+{
+  "_comment": "The dotstrap.com public pages the live smoke visits and what each must say. A change on the live site is a one-file fix here. Public pages only: /login is excluded (robots.txt disallows it). Patterns are case-insensitive regular expressions.",
+  "pages": [
+    { "path": "/", "title": "Dotstrap", "heading": "Anyone can knock" },
+    { "path": "/how-it-works", "title": "How it works", "heading": "stranger at your page" },
+    { "path": "/front-desk", "title": "front desk", "heading": "always answers the door" },
+    { "path": "/pricing", "title": "Pricing", "heading": "free" },
+    { "path": "/faq", "title": "FAQ", "heading": "questions people actually ask" },
+    { "path": "/about", "title": "About", "heading": "front desk" },
+    { "path": "/security", "title": "Security", "heading": "protects your data" },
+    { "path": "/privacy", "title": "Privacy", "heading": "Privacy Policy" },
+    { "path": "/terms", "title": "Terms", "heading": "Terms" }
+  ],
+  "metadataPages": ["/", "/pricing", "/faq"],
+  "responsivePages": ["/", "/how-it-works", "/pricing"],
+  "widths": [1440, 1024, 768, 390]
+}
