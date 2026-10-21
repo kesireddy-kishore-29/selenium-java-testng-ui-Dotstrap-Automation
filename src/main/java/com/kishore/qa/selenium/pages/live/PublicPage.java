@@ -24,6 +24,7 @@ import org.openqa.selenium.chromium.HasCdp;
  */
 public final class PublicPage extends BasePage {
 
+  // The page's level-1 heading; Selenium has no role locator, and a level-1 heading is an h1.
   private static final By HEADING = Locators.tag("h1");
 
   /** Page wider than its viewport, and up to five elements that push it out. */

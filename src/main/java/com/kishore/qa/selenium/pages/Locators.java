@@ -32,7 +32,11 @@ public final class Locators {
     return By.cssSelector("[aria-label=" + quote(label) + "]");
   }
 
-  /** Rank 4: a tag, only inside an element already found (a cell in a row, a button in a card). */
+  /**
+   * Rank 4: a tag inside an element already found (a cell in a row, a button in a card). The one
+   * page-level use is {@code h1}: the page's level-1 heading is what a screen reader user jumps to
+   * first, and the role check that follows confirms it is announced as a heading.
+   */
   public static By tag(String tag) {
     return By.tagName(tag);
   }
