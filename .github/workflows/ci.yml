@@ -1,0 +1,81 @@
+name: CI
+
+# Pull-request gate: the framework's own quality checks, then the smoke suite in headless Chrome
+# against Sauce Demo. The live site and the deliberate failures never run here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  MAVEN_ARGS: -B -ntp
+
+jobs:
+  quality:
+    name: Format, lint, compile, unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: ffmpeg (the unit tests stitch a real video)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Spotless check, Checkstyle, compile (-Werror), unit tests, quarantine policy
+        run: ./mvnw verify -Dsuite=unit
+
+  smoke:
+    name: Smoke suite (headless Chrome)
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      RECORD_MODE: failures
+      RUN_ID: ci-${{ github.run_id }}-${{ github.run_attempt }}
+      RUN_DIR: run-evidence/selenium-java-ui-framework/ci-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: ffmpeg (stitches the failure videos)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Smoke suite (Chrome comes with the runner; Selenium Manager matches the driver)
+        id: tests
+        run: ./mvnw verify -Pci -Dsuite=smoke
+      - name: Allure report
+        if: always() && steps.tests.outcome != 'skipped'
+        run: scripts/allure-report.sh
+      - name: Upload the failure bundles
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: failure-bundles-${{ github.run_attempt }}
+          path: ${{ env.RUN_DIR }}/failure-bundles/
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Upload evidence and reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: smoke-${{ github.run_attempt }}
+          path: |
+            run-evidence/
+            target/site/allure-maven-plugin/
+            target/surefire-reports/
+          retention-days: 14
+          if-no-files-found: ignore

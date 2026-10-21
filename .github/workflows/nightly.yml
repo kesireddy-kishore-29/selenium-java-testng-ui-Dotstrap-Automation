@@ -1,0 +1,249 @@
+name: Nightly
+
+# The full regression with retries (flaky tests are reported, not hidden) and every test recorded;
+# the live production smoke (public pages, one browser, never gating); the Allure report with its
+# trend published to GitHub Pages. Optional: the hybrid test against the UI flagship's app, and a
+# Selenium Grid run with the Grid's own video recorder.
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  MAVEN_ARGS: -B -ntp
+  RUN_ID: nightly-${{ github.run_id }}-${{ github.run_attempt }}
+  RECORD_MODE: all
+  TEST_RETRIES: '2'
+
+jobs:
+  regression:
+    name: Regression (retries, every test recorded)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RUN_DIR: run-evidence/selenium-java-ui-framework/nightly-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: ffmpeg (stitches the videos)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      # The hybrid test seeds data in the UI flagship's self-hosted app. Set the repository
+      # variables FLAGSHIP_OWNER and UI_FLAGSHIP_REF to run it; without them it is skipped.
+      - name: Check out the UI flagship's app
+        if: vars.FLAGSHIP_OWNER != '' && vars.UI_FLAGSHIP_REF != ''
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ vars.FLAGSHIP_OWNER }}/ui-automation-framework
+          ref: ${{ vars.UI_FLAGSHIP_REF }}
+          path: flagship-ui
+      - uses: actions/setup-node@v7
+        if: vars.FLAGSHIP_OWNER != '' && vars.UI_FLAGSHIP_REF != ''
+        with:
+          node-version: 24
+      - name: Start the UI flagship's app on :4173
+        if: vars.FLAGSHIP_OWNER != '' && vars.UI_FLAGSHIP_REF != ''
+        working-directory: flagship-ui
+        run: |
+          npm ci
+          nohup npx tsx sut-ui/server.ts > ../sut-ui.log 2>&1 &
+          for _ in $(seq 1 30); do
+            curl -sf http://localhost:4173/api/health && exit 0
+            sleep 1
+          done
+          cat ../sut-ui.log
+          exit 1
+      - name: Regression suite
+        id: tests
+        run: ./mvnw verify -Pci -Dsuite=regression
+      - name: Upload the evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: evidence
+          path: run-evidence/
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Upload the failure bundles
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: failure-bundles
+          path: ${{ env.RUN_DIR }}/failure-bundles/
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Upload the Allure results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-results
+          path: target/allure-results/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  live:
+    name: Live production smoke (public pages only; never gates)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # A failure here is reported (job output and badge), never blocking: the site is production,
+    # not a test target. Evidence is a short-lived artifact and is never published.
+    outputs:
+      outcome: ${{ steps.live.outcome }}
+    env:
+      RUN_ID: live-${{ github.run_id }}-${{ github.run_attempt }}
+      RECORD_MODE: failures
+      TEST_RETRIES: '0'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Live smoke (one browser, a user agent naming this project, no retries)
+        id: live
+        continue-on-error: true
+        run: ./mvnw verify -Pci -Dsuite=live
+      - name: Upload the live evidence (short-lived artifact; never published to Pages)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: live-evidence
+          path: run-evidence/
+          retention-days: 7
+          if-no-files-found: ignore
+
+  grid-video:
+    # NOT RUN: written but never executed (no Docker where this repository was built). Turn it on
+    # with the repository variable SELENIUM_GRID_VIDEO=true. See docs/known-issues.md.
+    name: Regression on a Selenium Grid with the Grid's video recorder (optional)
+    if: vars.SELENIUM_GRID_VIDEO == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RUN_ID: grid-${{ github.run_id }}-${{ github.run_attempt }}
+      VIDEO_MODE: grid
+      GRID_URL: http://localhost:4444
+      GRID_VIDEO_DIR: grid-videos
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - name: Start the Grid (hub, Chrome node, video recorder)
+        run: |
+          mkdir -p grid-videos
+          docker compose -f docker/selenium-grid.yml up -d
+          for _ in $(seq 1 60); do
+            curl -sf http://localhost:4444/status | grep -q '"ready": *true' && exit 0
+            sleep 2
+          done
+          docker compose -f docker/selenium-grid.yml logs
+          exit 1
+      - name: Regression on the Grid
+        run: ./mvnw verify -Pci -Dsuite=regression
+      - name: Stop the Grid (the recorder finalises the last video)
+        if: always()
+        run: docker compose -f docker/selenium-grid.yml down
+      - name: Upload the evidence with the Grid's videos
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: grid-evidence
+          path: |
+            run-evidence/
+            grid-videos/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  publish:
+    name: Allure with history, run gallery and live badge to Pages
+    needs: [regression, live]
+    if: always() && needs.regression.result != 'cancelled'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      RUN_DIR: run-evidence/selenium-java-ui-framework/nightly-${{ github.run_id }}-${{ github.run_attempt }}
+      LIVE_OUTCOME: ${{ needs.live.outputs.outcome }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check out the published site (absent before the first publish)
+        uses: actions/checkout@v7
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: published
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      - uses: actions/download-artifact@v8
+        with:
+          name: allure-results
+          path: target/allure-results
+      - uses: actions/download-artifact@v8
+        with:
+          name: evidence
+          path: run-evidence
+      - name: Allure report with trend history
+        run: |
+          scripts/allure-report.sh published/allure
+          mkdir -p site
+          cp -r target/site/allure-maven-plugin site/allure
+      - name: This run's gallery, without videos and bundles (they stay in the artifacts)
+        run: |
+          mkdir -p site/runs/latest
+          rsync -a --exclude video.webm --exclude failure-bundles --exclude '*.zip' \
+            "$RUN_DIR/" site/runs/latest/
+      - name: Live smoke badge (from this run's live job)
+        run: |
+          mkdir -p site/badges
+          case "$LIVE_OUTCOME" in
+            success) message=passing; color=brightgreen ;;
+            failure) message=failing; color=red ;;
+            *) message="not run"; color=lightgrey ;;
+          esac
+          printf '{"schemaVersion":1,"label":"dotstrap.com live smoke","message":"%s","color":"%s"}\n' \
+            "$message" "$color" > site/badges/live-smoke.json
+      - name: Site index
+        run: |
+          cat > site/index.html <<EOF
+          <!doctype html><html lang="en"><meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>selenium-java-ui-framework reports</title>
+          <body style="font-family:system-ui,sans-serif;margin:2rem;line-height:1.6">
+          <h1>selenium-java-ui-framework</h1>
+          <p>Nightly run <code>${RUN_ID}</code></p>
+          <ul><li><a href="allure/">Allure report (with trend)</a></li>
+          <li><a href="runs/latest/gallery.html">Run gallery (screenshots; videos are in the workflow artifacts)</a></li>
+          <li><a href="runs/latest/run-summary.json">run-summary.json</a></li></ul>
+          </body></html>
+          EOF
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+          commit_message: 'nightly ${{ env.RUN_ID }}'
+      - name: Fail when the regression failed
+        if: needs.regression.result == 'failure'
+        run: |
+          echo "The regression failed; see the Allure report and the failure bundles."
+          exit 1

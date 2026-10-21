@@ -1,0 +1,32 @@
+# A Selenium Grid with a video recorder, for VIDEO_MODE=grid (nightly.yml, job grid-video).
+# NOT RUN: Docker could not run where this repository was built, so these images have never been
+# pulled here and this file has never been started. Pin the tags to the release matching
+# selenium.version in pom.xml when the job is first switched on. See docs/known-issues.md.
+#
+# The recorder names each video after the session (SE_VIDEO_FILE_NAME=auto); EvidenceCapture finds
+# a test's video by its session ID in grid-videos/ and copies it next to the test's evidence.
+services:
+  selenium-hub:
+    image: selenium/hub:latest
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:latest
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      # The recorder films the node's one display, so one session at a time; the hub queues the
+      # rest. Scale this service for parallel runs (each node then needs its own recorder).
+      - SE_NODE_MAX_SESSIONS=1
+  chrome-video:
+    image: selenium/video:latest
+    depends_on:
+      - chrome
+    volumes:
+      - ../grid-videos:/videos
+    environment:
+      - DISPLAY_CONTAINER_NAME=chrome
+      - SE_NODE_GRID_URL=http://selenium-hub:4444
+      - SE_VIDEO_FILE_NAME=auto
