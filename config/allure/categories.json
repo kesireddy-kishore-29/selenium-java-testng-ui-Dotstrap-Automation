@@ -1,0 +1,27 @@
+[
+  {
+    "name": "ENVIRONMENT (browser, network or a service did not answer)",
+    "matchedStatuses": ["failed", "broken"],
+    "traceRegex": "(?s).*(SessionNotCreatedException|net::ERR_|UnknownHostException|ConnectException|Connection refused|is not reachable).*"
+  },
+  {
+    "name": "LOCATOR_DRIFT (an element the test relies on is not on the page)",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": "(?s)(no such element.*|Expected condition failed: waiting \\d+ s for (visibility|clickability|absence) of (all )?By\\..*)"
+  },
+  {
+    "name": "TIMING (a condition never became true in time)",
+    "matchedStatuses": ["failed", "broken"],
+    "messageRegex": "(?s)Expected condition failed: waiting \\d+ s for (?!(visibility|clickability|absence) of (all )?By\\.).*"
+  },
+  {
+    "name": "TEST_DATA (seeding or cleanup failed)",
+    "matchedStatuses": ["failed", "broken"],
+    "traceRegex": "(?s).*(ApiException|Seeded items were not deleted|still signs in after deletion).*"
+  },
+  {
+    "name": "PRODUCT_BUG (the page did not do what the requirement says)",
+    "matchedStatuses": ["failed"],
+    "traceRegex": "(?s)java\\.lang\\.AssertionError.*"
+  }
+]

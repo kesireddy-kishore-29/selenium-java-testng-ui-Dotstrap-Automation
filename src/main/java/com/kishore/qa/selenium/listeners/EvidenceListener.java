@@ -21,6 +21,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
@@ -31,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -272,7 +275,30 @@ public final class EvidenceListener
     }
     Gallery.write(run, finals);
     StepSummary.write(run, written, finals);
+    writeAllureEnvironment(environment);
     LOG.info("Run summary: {}", run.runDir().resolve("run-summary.json"));
+  }
+
+  /** Fills the Allure report's Environment panel with the same non-secret facts as the summary. */
+  private void writeAllureEnvironment(Map<String, Object> environment) {
+    String dir = System.getProperty("allure.results.directory");
+    if (dir == null || dir.isBlank()) {
+      return;
+    }
+    Properties properties = new Properties();
+    properties.setProperty("runId", run.runId());
+    properties.setProperty("gitSha", run.gitSha());
+    environment.forEach((key, value) -> properties.setProperty(key, String.valueOf(value)));
+    try {
+      Path results = Files.createDirectories(Path.of(dir));
+      try (Writer out =
+          Files.newBufferedWriter(
+              results.resolve("environment.properties"), StandardCharsets.UTF_8)) {
+        properties.store(out, null);
+      }
+    } catch (IOException e) {
+      LOG.warn("Could not write the Allure environment file: {}", e.getMessage());
+    }
   }
 
   private static UiTest uiTest(IInvokedMethod method, ITestResult result) {
