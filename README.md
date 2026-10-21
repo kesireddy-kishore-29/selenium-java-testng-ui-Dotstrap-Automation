@@ -14,7 +14,7 @@ four repositories.
 
 | | |
 |---|---|
-| Tests | 20 runs of 12 browser tests in the regression, 3 in the smoke, 17 runs of 4 checks in the live smoke, 3 deliberate failures, 51 framework unit tests; all passed in the latest local runs (the deliberate failures failed, as designed) |
+| Tests | 20 runs of 12 browser tests in the regression, 3 in the smoke, 17 runs of 4 checks in the live smoke, 3 deliberate failures, 54 framework unit tests; all passed in the latest local runs (the deliberate failures failed, as designed) |
 | Run time | About 41 s for the regression on a laptop, three browsers at a time; about a minute for the live smoke, one browser |
 | Features traced | 17 feature IDs, shared with the other repositories; a browser test without one stops the suite before it starts |
 | Status | Verified locally on Windows 11 with headless Chrome. The workflows pass actionlint and shellcheck but **have not run on GitHub yet**, and the Selenium Grid video option has never run ([known issues](docs/known-issues.md)) |
@@ -77,7 +77,7 @@ flowchart LR
 | `regression` | 12 tests, 20 runs | Sign-in (valid, 4 invalid cases, locked out), product list, 4 sorts, product detail, cart badge, checkout (full, 3 missing fields, order arithmetic), logout; one hybrid test on a table and a dialog | Sauce Demo, sut-ui |
 | `live` | 4 checks, 17 runs | 9 public pages answer 200 with their heading; no console errors or failed requests; title, description and canonical URL; no horizontal overflow at 1440, 1024, 768 and 390 px | dotstrap.com, nightly only |
 | `demo-failure` | 3 | Fails on purpose: a wrong expectation, a missing element, a wait that times out | Sauce Demo |
-| `unit` | 51 | The framework itself: configuration, redaction, log parsing, video, locator extraction, traceability, quarantine, reports | none |
+| `unit` | 54 | The framework itself: configuration, redaction, log parsing, video, locator extraction, test ids, traceability, quarantine, reports | none |
 
 ## Traceability
 

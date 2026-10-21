@@ -16,7 +16,7 @@ accessibility, triage, healing).
 
 | Suite (`-Dsuite=`) | Contents | Runs |
 |---|---|---|
-| `unit` | 51 framework unit tests, no browser | Every push (CI `quality`) |
+| `unit` | 54 framework unit tests, no browser | Every push (CI `quality`) |
 | `smoke` | 3 journeys: sign in, product list, full checkout | Every push and pull request |
 | `regression` | 12 test methods, 20 runs with data providers, including the hybrid test | Nightly, retries on |
 | `live` | 4 checks, 17 runs, one browser | Nightly and on demand, never gating |
