@@ -1,3 +1,3 @@
-com.kishore.qa.selenium.listeners.TraceabilityListener
-com.kishore.qa.selenium.listeners.EvidenceListener
-com.kishore.qa.selenium.listeners.RetryTransformer
+com.qaautomation.selenium.listeners.TraceabilityListener
+com.qaautomation.selenium.listeners.EvidenceListener
+com.qaautomation.selenium.listeners.RetryTransformer

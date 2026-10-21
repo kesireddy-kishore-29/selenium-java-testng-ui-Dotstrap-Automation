@@ -23,22 +23,22 @@ four repositories.
 
 | Practice | Where it is |
 |---|---|
-| Page objects and components with a written locator policy | [`pages/`](src/main/java/com/kishore/qa/selenium/pages/), [`components/`](src/main/java/com/kishore/qa/selenium/components/), [docs/locator-policy.md](docs/locator-policy.md) |
-| Accessible role and name checked, not just presence | [`Accessible`](src/main/java/com/kishore/qa/selenium/pages/Accessible.java) (`getAriaRole()`, `getAccessibleName()`) |
-| One browser per test, thread-safe, started and quit by a listener | [`DriverFactory`](src/main/java/com/kishore/qa/selenium/core/DriverFactory.java), [`EvidenceListener`](src/main/java/com/kishore/qa/selenium/listeners/EvidenceListener.java) |
-| Explicit waits only; hard and implicit waits refused by Checkstyle | [`WaitHelper`](src/main/java/com/kishore/qa/selenium/core/WaitHelper.java), [`checkstyle.xml`](config/checkstyle/checkstyle.xml) |
-| A fluent flow for a multi-page journey | [`CheckoutFlow`](src/main/java/com/kishore/qa/selenium/flows/CheckoutFlow.java) |
-| Data-driven tests whose cases read as names in reports | [`LoginTest`](src/test/java/com/kishore/qa/selenium/tests/sauce/LoginTest.java), [`InventoryTest`](src/test/java/com/kishore/qa/selenium/tests/sauce/InventoryTest.java), [`CheckoutTest`](src/test/java/com/kishore/qa/selenium/tests/sauce/CheckoutTest.java) |
-| Session seeded by cookie; only sign-in tests use the form | [`SauceSession`](src/main/java/com/kishore/qa/selenium/pages/sauce/SauceSession.java) |
-| Hybrid test: seed through the API, check the UI, cleanup verified | [`ItemsTest`](src/test/java/com/kishore/qa/selenium/tests/app/ItemsTest.java), [`AppAccount`](src/main/java/com/kishore/qa/selenium/clients/AppAccount.java) |
-| Configuration validated at start-up, every problem at once | [`ConfigLoader`](src/main/java/com/kishore/qa/selenium/config/ConfigLoader.java) |
-| Failure evidence: stitched video, screenshots, DOM, console, network log, bundles | [`evidence/`](src/main/java/com/kishore/qa/selenium/evidence/), [example](docs/examples/failure-evidence/) |
-| Redaction of credentials in everything evidence writes | [`Redactor`](src/main/java/com/kishore/qa/selenium/core/Redactor.java) and its unit tests |
-| Retries capped at two; a pass on retry is reported as flaky | [`RetryAnalyzer`](src/main/java/com/kishore/qa/selenium/listeners/RetryAnalyzer.java), `flaky-report.json` |
-| Requirements traceability, enforced | [`TraceabilityListener`](src/main/java/com/kishore/qa/selenium/listeners/TraceabilityListener.java) |
-| Quarantine with owner and expiry, enforced by a unit test | [`quarantine.json`](quarantine.json), [`QuarantinePolicy`](src/main/java/com/kishore/qa/selenium/listeners/QuarantinePolicy.java) |
+| Page objects and components with a written locator policy | [`pages/`](src/main/java/com/qaautomation/selenium/pages/), [`components/`](src/main/java/com/qaautomation/selenium/components/), [docs/locator-policy.md](docs/locator-policy.md) |
+| Accessible role and name checked, not just presence | [`Accessible`](src/main/java/com/qaautomation/selenium/pages/Accessible.java) (`getAriaRole()`, `getAccessibleName()`) |
+| One browser per test, thread-safe, started and quit by a listener | [`DriverFactory`](src/main/java/com/qaautomation/selenium/core/DriverFactory.java), [`EvidenceListener`](src/main/java/com/qaautomation/selenium/listeners/EvidenceListener.java) |
+| Explicit waits only; hard and implicit waits refused by Checkstyle | [`WaitHelper`](src/main/java/com/qaautomation/selenium/core/WaitHelper.java), [`checkstyle.xml`](config/checkstyle/checkstyle.xml) |
+| A fluent flow for a multi-page journey | [`CheckoutFlow`](src/main/java/com/qaautomation/selenium/flows/CheckoutFlow.java) |
+| Data-driven tests whose cases read as names in reports | [`LoginTest`](src/test/java/com/qaautomation/selenium/tests/sauce/LoginTest.java), [`InventoryTest`](src/test/java/com/qaautomation/selenium/tests/sauce/InventoryTest.java), [`CheckoutTest`](src/test/java/com/qaautomation/selenium/tests/sauce/CheckoutTest.java) |
+| Session seeded by cookie; only sign-in tests use the form | [`SauceSession`](src/main/java/com/qaautomation/selenium/pages/sauce/SauceSession.java) |
+| Hybrid test: seed through the API, check the UI, cleanup verified | [`ItemsTest`](src/test/java/com/qaautomation/selenium/tests/app/ItemsTest.java), [`AppAccount`](src/main/java/com/qaautomation/selenium/clients/AppAccount.java) |
+| Configuration validated at start-up, every problem at once | [`ConfigLoader`](src/main/java/com/qaautomation/selenium/config/ConfigLoader.java) |
+| Failure evidence: stitched video, screenshots, DOM, console, network log, bundles | [`evidence/`](src/main/java/com/qaautomation/selenium/evidence/), [example](docs/examples/failure-evidence/) |
+| Redaction of credentials in everything evidence writes | [`Redactor`](src/main/java/com/qaautomation/selenium/core/Redactor.java) and its unit tests |
+| Retries capped at two; a pass on retry is reported as flaky | [`RetryAnalyzer`](src/main/java/com/qaautomation/selenium/listeners/RetryAnalyzer.java), `flaky-report.json` |
+| Requirements traceability, enforced | [`TraceabilityListener`](src/main/java/com/qaautomation/selenium/listeners/TraceabilityListener.java) |
+| Quarantine with owner and expiry, enforced by a unit test | [`quarantine.json`](quarantine.json), [`QuarantinePolicy`](src/main/java/com/qaautomation/selenium/listeners/QuarantinePolicy.java) |
 | Allure with triage categories, environment and trend | [`categories.json`](config/allure/categories.json), [`allure-report.sh`](scripts/allure-report.sh) |
-| A live production smoke that never gates and never signs in | [`PublicSiteTest`](src/test/java/com/kishore/qa/selenium/tests/live/PublicSiteTest.java), [`live-pages.json`](src/main/resources/config/live-pages.json) |
+| A live production smoke that never gates and never signs in | [`PublicSiteTest`](src/test/java/com/qaautomation/selenium/tests/live/PublicSiteTest.java), [`live-pages.json`](src/main/resources/config/live-pages.json) |
 | CI: pull-request gate, nightly with Pages and a live badge, optional Grid video | [`.github/workflows/`](.github/workflows/) |
 | Quality gates | `-Werror` (no raw types or unchecked casts), Spotless, Checkstyle, Enforcer, lefthook, Conventional Commits, a 2 MB file guard |
 

@@ -3,11 +3,11 @@
 <suite name="unit" parallel="none">
   <test name="unit">
     <packages>
-      <package name="com.kishore.qa.selenium.config"/>
-      <package name="com.kishore.qa.selenium.core"/>
-      <package name="com.kishore.qa.selenium.evidence"/>
-      <package name="com.kishore.qa.selenium.listeners"/>
-      <package name="com.kishore.qa.selenium.pages"/>
+      <package name="com.qaautomation.selenium.config"/>
+      <package name="com.qaautomation.selenium.core"/>
+      <package name="com.qaautomation.selenium.evidence"/>
+      <package name="com.qaautomation.selenium.listeners"/>
+      <package name="com.qaautomation.selenium.pages"/>
     </packages>
   </test>
 </suite>

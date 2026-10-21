@@ -9,8 +9,8 @@
       </run>
     </groups>
     <packages>
-      <package name="com.kishore.qa.selenium.tests.sauce"/>
-      <package name="com.kishore.qa.selenium.tests.app"/>
+      <package name="com.qaautomation.selenium.tests.sauce"/>
+      <package name="com.qaautomation.selenium.tests.app"/>
     </packages>
   </test>
 </suite>

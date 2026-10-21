@@ -9,7 +9,7 @@
       </run>
     </groups>
     <packages>
-      <package name="com.kishore.qa.selenium.tests.live"/>
+      <package name="com.qaautomation.selenium.tests.live"/>
     </packages>
   </test>
 </suite>
