@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- dotstrap.com public pages. One browser at a time, in order: a polite visitor. Nightly and on
+     demand only; never on pull requests and never gating. -->
+<suite name="live" parallel="none" thread-count="1">
+  <test name="live" preserve-order="true">
+    <groups>
+      <run>
+        <include name="live"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.kishore.qa.selenium.tests.live"/>
+    </packages>
+  </test>
+</suite>
