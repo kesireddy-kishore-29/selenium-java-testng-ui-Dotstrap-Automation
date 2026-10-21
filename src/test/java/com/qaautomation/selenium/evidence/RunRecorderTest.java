@@ -35,7 +35,8 @@ public final class RunRecorderTest {
   }
 
   private static RunRecorder recorder(Path dir) {
-    return new RunRecorder(new RunInfo("selenium-java-ui-framework", "unit", "abc", dir, "all"));
+    return new RunRecorder(
+        new RunInfo("selenium-java-testng-ui-Dotstrap-Automation", "unit", "abc", dir, "all"));
   }
 
   @Test

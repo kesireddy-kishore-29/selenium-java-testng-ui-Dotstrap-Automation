@@ -14,7 +14,7 @@ rendered page. It must never load the site in a way its owner would mind.
 1. Public pages only: no sign-in (`/login` is refused by the configuration loader), no forms, no
    data created, no calls to the backend.
 2. One browser at a time (`live.xml`: no parallelism), no retries in CI, and a user agent ending
-   in ` selenium-java-ui-framework (portfolio smoke test)`; the first check asserts it.
+   in ` selenium-java-testng-ui-Dotstrap-Automation (portfolio smoke test)`; the first check asserts it.
 3. Nightly and on demand only, never on pull requests, and never gating: the job continues on
    error and its result feeds a badge.
 4. The pages and the text they must show are in one file, `config/live-pages.json`.

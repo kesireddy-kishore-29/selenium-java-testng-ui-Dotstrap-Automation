@@ -9,7 +9,9 @@ public final class GalleryTest {
 
   @Test
   public void fillsTheSharedTemplateWithTheRunData() {
-    String html = Gallery.render(Map.of("repo", "selenium-java-ui-framework", "runId", "unit-1"));
+    String html =
+        Gallery.render(
+            Map.of("repo", "selenium-java-testng-ui-Dotstrap-Automation", "runId", "unit-1"));
 
     assertThat(html).startsWith("<!doctype html>").doesNotContain("/*__DATA__*/null");
     assertThat(html).contains("\"runId\" : \"unit-1\"");

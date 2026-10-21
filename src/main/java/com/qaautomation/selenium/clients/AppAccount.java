@@ -34,7 +34,7 @@ public final class AppAccount implements AutoCloseable {
       throw new SkipException(
           "The UI flagship's sut-ui is not reachable at "
               + api.base()
-              + " (start it with: cd ui-automation-framework && npm run sut)");
+              + " (start it with: cd playwright-typescript-ui-Dotstrap-Automation && npm run sut)");
     }
     String email = Unique.email();
     String password = "pw-" + email;

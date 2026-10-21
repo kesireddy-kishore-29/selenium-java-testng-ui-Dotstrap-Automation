@@ -45,7 +45,9 @@ public final class EvidenceFilesTest {
     Files.createDirectories(attemptDir);
     Files.writeString(attemptDir.resolve("console.log"), "(no console output)");
     Files.writeString(attemptDir.resolve("meta.json"), "{}");
-    RunInfo run = new RunInfo("selenium-java-ui-framework", "unit-1", "abc123", runDir, "failures");
+    RunInfo run =
+        new RunInfo(
+            "selenium-java-testng-ui-Dotstrap-Automation", "unit-1", "abc123", runDir, "failures");
     TestRecord failed =
         new TestRecord(
             "DeliberateFailureTest#missingElement",

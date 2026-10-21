@@ -1,14 +1,14 @@
-# selenium-java-ui-framework
+# selenium-java-testng-ui-Dotstrap-Automation
 
 UI test automation with Selenium 4, Java 21 and TestNG: page objects and components, one browser
 per test, explicit waits only, data-driven and hybrid tests, a polite live smoke of a production
 site, and failure evidence with video, logs and bundles. The lite Selenium member of a family of
 four repositories.
 
-[![CI](https://github.com/kesireddy-kishore-29/selenium-java-ui-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-ui-framework/actions/workflows/ci.yml)
-[![Nightly](https://github.com/kesireddy-kishore-29/selenium-java-ui-framework/actions/workflows/nightly.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-ui-framework/actions/workflows/nightly.yml)
-[![dotstrap.com live smoke](https://img.shields.io/endpoint?url=https%3A%2F%2Fkesireddy-kishore-29.github.io%2Fselenium-java-ui-framework%2Fbadges%2Flive-smoke.json)](https://github.com/kesireddy-kishore-29/selenium-java-ui-framework/actions/workflows/nightly.yml)
-[![Report](https://img.shields.io/badge/report-GitHub%20Pages-2a78d6)](https://kesireddy-kishore-29.github.io/selenium-java-ui-framework/)
+[![CI](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/ci.yml)
+[![Nightly](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml)
+[![dotstrap.com live smoke](https://img.shields.io/endpoint?url=https%3A%2F%2Fkesireddy-kishore-29.github.io%2Fselenium-java-testng-ui-Dotstrap-Automation%2Fbadges%2Flive-smoke.json)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml)
+[![Report](https://img.shields.io/badge/report-GitHub%20Pages-2a78d6)](https://kesireddy-kishore-29.github.io/selenium-java-testng-ui-Dotstrap-Automation/)
 
 ![Allure report of a real local regression run: 20 of 20 passed, two-run trend](docs/examples/allure/overview.png)
 
@@ -137,10 +137,10 @@ project, never gating a merge. Its evidence is never published or committed.
 
 ## Family of repos
 
-- [**api-automation-framework**](https://github.com/kesireddy-kishore-29/api-automation-framework): the API flagship in Java with REST Assured and TestNG: contract, functional, security and resilience suites, triage, governed self-healing and a health dashboard.
-- [**ui-automation-framework**](https://github.com/kesireddy-kishore-29/ui-automation-framework): the UI flagship in TypeScript with Playwright, where the Sauce Demo scenarios, the self-hosted app and the full live smoke come from.
-- **selenium-java-ui-framework** (this one): the same Sauce Demo scenarios in Selenium 4 and Java, with the same feature IDs.
-- [**python-pytest-automation-framework**](https://github.com/kesireddy-kishore-29/python-pytest-automation-framework): API and UI tests in Python with pytest and Playwright for Python.
+- [**restassured-testng-api-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/restassured-testng-api-Dotstrap-Automation): the API flagship in Java with REST Assured and TestNG: contract, functional, security and resilience suites, triage, governed self-healing and a health dashboard.
+- [**playwright-typescript-ui-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/playwright-typescript-ui-Dotstrap-Automation): the UI flagship in TypeScript with Playwright, where the Sauce Demo scenarios, the self-hosted app and the full live smoke come from.
+- **selenium-java-testng-ui-Dotstrap-Automation** (this one): the same Sauce Demo scenarios in Selenium 4 and Java, with the same feature IDs.
+- [**Python-pytest-playwright-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/Python-pytest-playwright-Dotstrap-Automation): API and UI tests in Python with pytest and Playwright for Python.
 
 ## How to run
 
@@ -160,5 +160,5 @@ scripts/allure-report.sh             # Allure with trend history
 Switches: `RECORD_MODE=failures|all|off`, `RUN_ID=<id>`, `TEST_RETRIES=0..2`,
 `VIDEO_MODE=stitch|grid|off` (with `GRID_URL`), `-Pci` for the CI profile; any configuration key as
 an environment variable (`sauce.baseUrl` → `SAUCE_BASE_URL`). Evidence lands in
-`run-evidence/selenium-java-ui-framework/<run-id>/`. More in the [test strategy](docs/test-strategy.md),
+`run-evidence/selenium-java-testng-ui-Dotstrap-Automation/<run-id>/`. More in the [test strategy](docs/test-strategy.md),
 [locator policy](docs/locator-policy.md) and [known issues](docs/known-issues.md).

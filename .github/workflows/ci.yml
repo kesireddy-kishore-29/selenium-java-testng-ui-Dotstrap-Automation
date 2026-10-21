@@ -44,7 +44,7 @@ jobs:
     env:
       RECORD_MODE: failures
       RUN_ID: ci-${{ github.run_id }}-${{ github.run_attempt }}
-      RUN_DIR: run-evidence/selenium-java-ui-framework/ci-${{ github.run_id }}-${{ github.run_attempt }}
+      RUN_DIR: run-evidence/selenium-java-testng-ui-Dotstrap-Automation/ci-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-java@v6

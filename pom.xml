@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.qaautomation</groupId>
-  <artifactId>selenium-java-ui-framework</artifactId>
+  <artifactId>selenium-java-testng-ui-Dotstrap-Automation</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>Selenium Java UI Framework</name>
+  <name>selenium-java-testng-ui-Dotstrap-Automation</name>
   <description>Selenium 4 + TestNG UI framework: thread-safe drivers, explicit waits, page objects and
     components, failure evidence with stitched video, Allure.</description>
 

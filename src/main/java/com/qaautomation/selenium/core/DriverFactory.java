@@ -23,7 +23,7 @@ public final class DriverFactory {
 
   /** The user agent suffix the live smoke presents, so the site owner can see who is visiting. */
   public static final String LIVE_USER_AGENT_SUFFIX =
-      " selenium-java-ui-framework (portfolio smoke test)";
+      " selenium-java-testng-ui-Dotstrap-Automation (portfolio smoke test)";
 
   /** A started browser: the driver tests use, the raw one evidence uses, and its recorder. */
   public record Session(WebDriver driver, RemoteWebDriver raw, Optional<FrameRecorder> frames) {}

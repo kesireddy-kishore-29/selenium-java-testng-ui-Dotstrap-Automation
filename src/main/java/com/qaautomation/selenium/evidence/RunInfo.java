@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /** Identity of a run: repository, run ID, git SHA and where its evidence lives. */
 public record RunInfo(String repo, String runId, String gitSha, Path runDir, String recordMode) {
 
-  public static final String REPO = "selenium-java-ui-framework";
+  public static final String REPO = "selenium-java-testng-ui-Dotstrap-Automation";
 
   public static RunInfo of(Config config) {
     return new RunInfo(
