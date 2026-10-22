@@ -4,7 +4,7 @@
 |---|---|
 | Test | `com.qaautomation.selenium.tests.demo.DeliberateFailureTest#missingElement` |
 | Features | FEAT-DEMO-01 |
-| Run | `sel-demo-5` (git `aa8ee491f378`) |
+| Run | `sel-demo-7` (git `7cf5ac6158be`) |
 | Attempts | 2 |
 | Failing locator | `By.cssSelector: [data-test="cart-count"]` |
 | Error | `org.openqa.selenium.NoSuchElementException` |
