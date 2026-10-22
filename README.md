@@ -1,23 +1,113 @@
 # selenium-java-testng-ui-Dotstrap-Automation
 
-UI test automation with Selenium 4, Java 21 and TestNG: page objects and components, one browser
-per test, explicit waits only, data-driven and hybrid tests, a polite live smoke of a production
-site, and failure evidence with video, logs and bundles. The lite Selenium member of a family of
-four repositories.
+Production-style Selenium framework: Java 21, Selenium 4, TestNG, Allure, GitHub Actions, with page
+objects and components, one browser per test, explicit waits only, a polite live smoke, and failure
+evidence with video, logs and bundles. The lite Selenium member of a family of four repositories.
 
 [![CI](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/ci.yml)
 [![Nightly](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml/badge.svg)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml)
 [![dotstrap.com live smoke](https://img.shields.io/endpoint?url=https%3A%2F%2Fkesireddy-kishore-29.github.io%2Fselenium-java-testng-ui-Dotstrap-Automation%2Fbadges%2Flive-smoke.json)](https://github.com/kesireddy-kishore-29/selenium-java-testng-ui-Dotstrap-Automation/actions/workflows/nightly.yml)
 [![Report](https://img.shields.io/badge/report-GitHub%20Pages-2a78d6)](https://kesireddy-kishore-29.github.io/selenium-java-testng-ui-Dotstrap-Automation/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Java 21](https://img.shields.io/badge/Java-21-orange)](pom.xml)
+[![Selenium 4.51](https://img.shields.io/badge/Selenium-4.51.0-43b02a)](pom.xml)
+[![TestNG 7.12](https://img.shields.io/badge/TestNG-7.12.0-c0392b)](pom.xml)
 
-![Allure report of a real local regression run: 20 of 20 passed, two-run trend](docs/examples/allure/overview.png)
+## See it in 60 seconds
+
+- **Live report:** [Allure with trend and the run gallery](https://kesireddy-kishore-29.github.io/selenium-java-testng-ui-Dotstrap-Automation/),
+  published by the nightly run. _CI status: first run pending; the images below are from real
+  local runs._
+- **If you only have 60 seconds**, open:
+  1. [`CheckoutTest`](src/test/java/com/qaautomation/selenium/tests/sauce/CheckoutTest.java) and the
+     [`CheckoutFlow`](src/main/java/com/qaautomation/selenium/flows/CheckoutFlow.java) it drives.
+  2. [A failure bundle](docs/examples/failure-evidence/): two attempts, each with video,
+     screenshots, page source, network log and metadata.
+  3. [ADR 2, one browser per test](docs/adr/0002-thread-local-browser.md): how parallel runs stay
+     independent.
+
+![Allure report of a real regression run: 20 of 20 passed, two-run trend](docs/examples/allure/overview.png)
+
+![A real recorded checkout run, stitched from a screenshot after every page action](docs/images/checkout-run.gif)
+
+## At a glance
 
 | | |
 |---|---|
-| Tests | 20 runs of 12 browser tests in the regression, 3 in the smoke, 17 runs of 4 checks in the live smoke, 3 deliberate failures, 54 framework unit tests; all passed in the latest local runs (the deliberate failures failed, as designed) |
-| Run time | About 41 s for the regression on a laptop, three browsers at a time; about a minute for the live smoke, one browser |
-| Features traced | 17 feature IDs, shared with the other repositories; a browser test without one stops the suite before it starts |
-| Status | Verified locally on Windows 11 with headless Chrome. The workflows pass actionlint and shellcheck but **have not run on GitHub yet**, and the Selenium Grid video option has never run ([known issues](docs/known-issues.md)) |
+| Tests | **20** runs of 12 browser tests in the regression, 3 in the smoke, **17** runs of 4 checks in the live smoke, 3 deliberate failures; **54** framework unit tests |
+| Features traced | **17** feature IDs, shared with the other repositories; a browser test without one stops the suite before it starts |
+| Runs verified | 2 regression runs (`sel-allure-3`, `sel-allure-4`), 20/20 each, on 2026-10-22 at commit `7cf5ac6`; live smoke 17/17 at the same commit on 2026-10-21 (Windows 11, headless Chrome 154) |
+| Flaky tests | 0 over those 2 runs (a pass on retry is reported as flaky) |
+| Stack | Java 21, Selenium 4.51 (Selenium Manager), TestNG 7.12, AssertJ, Allure 2, ffmpeg for video, GitHub Actions |
+| What is unusual | Accessible role and name checked through Selenium's own APIs; video stitched from screenshots; hard and implicit waits refused by Checkstyle; the same feature IDs and evidence layout as the flagships |
+| CI status | Workflows pass actionlint and shellcheck; the first run on GitHub is pending ([known issues](docs/known-issues.md)) |
+
+## What's covered
+
+| Suite | What it verifies | Tests | Feature IDs | Target |
+|---|---|---|---|---|
+| `smoke` | Sign in, the product list, a full checkout | 3 | 3 | Sauce Demo |
+| `regression` | Sign-in (valid, 4 invalid cases, locked out), product list, 4 sorts, product detail, cart badge, checkout (full, 3 missing fields, order arithmetic), logout; one hybrid test on a table and a dialog | 20 runs of 12 tests | 12 | Sauce Demo, the UI flagship's app |
+| `live` | 9 public pages answer 200 with their heading; no console errors or failed requests; title, description, canonical URL; no horizontal overflow at 1440, 1024, 768 and 390 px | 17 runs of 4 checks | 4 | dotstrap.com, nightly only |
+| `demo-failure` | Fails on purpose: a wrong expectation, a missing element, a wait that times out | 3 | 1 | Sauce Demo |
+| `unit` | The framework itself: configuration, redaction, log parsing, video, locator extraction, test ids, traceability, quarantine, reports | 54 | – | none |
+
+The same scenario has the same feature ID in every repository of the family. Of the family's 22
+IDs in these areas, this repository covers 17; `FEAT-CART-02` and four live checks are covered by
+the UI flagship.
+
+## Run it
+
+Prerequisites: JDK 21 and Chrome (Selenium Manager fetches the matching driver); ffmpeg on the
+`PATH` turns the frames into videos.
+
+```bash
+./mvnw -B verify -Dsuite=unit       # 1. build: format check, Checkstyle, compile, 54 unit tests
+./mvnw test -Dsuite=smoke           # 2. smoke: three journeys on Sauce Demo
+./mvnw test -Dsuite=regression      # 3. regression: 20 runs (the hybrid test skips unless the UI flagship's app runs on :4173)
+scripts/allure-report.sh            # 4. Allure with trend history
+jwebserver -d "$PWD/target/site/allure-maven-plugin"   # 5. open http://127.0.0.1:8000 (jwebserver ships with JDK 21)
+```
+
+Windows PowerShell:
+
+```powershell
+.\mvnw.cmd -B verify -Dsuite=unit
+.\mvnw.cmd test -Dsuite=smoke
+.\mvnw.cmd test -Dsuite=regression
+.\mvnw.cmd allure:report
+jwebserver -d "$PWD\target\site\allure-maven-plugin"
+```
+
+| Run mode | Command | Output |
+|---|---|---|
+| Smoke | `./mvnw test -Dsuite=smoke` | `run-evidence/selenium-java-testng-ui-Dotstrap-Automation/<run-id>/` |
+| Regression | `./mvnw test -Dsuite=regression` | same |
+| Live smoke (public pages, one browser) | `./mvnw test -Dsuite=live` | same; never committed or published |
+| Evidence for every test | `RECORD_MODE=all` before the command (`failures` is the default, `off` keeps none); PowerShell: `$env:RECORD_MODE='all'` | `run-evidence/.../<run-id>/` |
+| Deliberate-failure demo | `./mvnw test -Dsuite=demo-failure` (3 tests fail on purpose) | failure bundles and `gallery.html` in `run-evidence/.../<run-id>/` |
+| Video through Selenium Grid | `VIDEO_MODE=grid` with `GRID_URL` (not run yet, see known issues) | same |
+
+`RUN_ID=<id>` names the run folder; `TEST_RETRIES=0..2` sets retries; any configuration key can be
+set as an environment variable (`sauce.baseUrl` → `SAUCE_BASE_URL`).
+
+## Reports and evidence
+
+| Report | What it shows | Published | Open locally |
+|---|---|---|---|
+| Allure | Every test with steps and screenshots, triage categories, environment, trend | Pages `/allure/` | steps 4 and 5 above |
+| Run gallery | Each test of the run, attempt by attempt, with video and evidence links (the flagships' shared page) | Pages `/runs/latest/gallery.html` (without videos) | `run-evidence/.../<run-id>/gallery.html` |
+| Run summary and flaky report | Per-test results, durations, attempts; tests that passed only on retry | Pages `/runs/latest/run-summary.json` | `run-evidence/.../<run-id>/run-summary.json`, `flaky-report.json` |
+
+A kept attempt has a **video** stitched from a screenshot after every page action, the viewport and
+full-page **screenshots**, the redacted **page source**, the **console log**, a **network log**
+from Chrome's performance log (no headers) and `meta.json`. A failed test also gets a **failure
+bundle** (every attempt and a README) and a zip. Example:
+[docs/examples/failure-evidence](docs/examples/failure-evidence/).
+
+![Run gallery of the deliberate-failure demo: both attempts with their videos and evidence links](docs/examples/gallery/gallery.png)
+
+![Allure categories: the three deliberate failures sorted into LOCATOR_DRIFT, PRODUCT_BUG and TIMING](docs/examples/allure/categories.png)
 
 ## Standards demonstrated
 
@@ -69,35 +159,17 @@ flowchart LR
   L --> EV --> OUT
 ```
 
-## What is tested
+A listener gives each test its own Chrome and quits it afterwards; tests act through page objects,
+components and a checkout flow. The same listener records evidence, which becomes the run summary,
+the gallery and the Allure report.
 
-| Suite | Tests | What it covers | Target |
-|---|---|---|---|
-| `smoke` | 3 | Sign in, the product list, a full checkout | Sauce Demo |
-| `regression` | 12 tests, 20 runs | Sign-in (valid, 4 invalid cases, locked out), product list, 4 sorts, product detail, cart badge, checkout (full, 3 missing fields, order arithmetic), logout; one hybrid test on a table and a dialog | Sauce Demo, sut-ui |
-| `live` | 4 checks, 17 runs | 9 public pages answer 200 with their heading; no console errors or failed requests; title, description and canonical URL; no horizontal overflow at 1440, 1024, 768 and 390 px | dotstrap.com, nightly only |
-| `demo-failure` | 3 | Fails on purpose: a wrong expectation, a missing element, a wait that times out | Sauce Demo |
-| `unit` | 54 | The framework itself: configuration, redaction, log parsing, video, locator extraction, test ids, traceability, quarantine, reports | none |
+## Triage and healing: what's the same and what's not here
 
-## Traceability
-
-Every browser test carries `@Feature("FEAT-…")`, also an Allure feature label. The IDs are the
-family's: the same scenario has the same ID in every repository. "Family" counts the area's IDs
-across the family; "Here" counts those this repository covers.
-
-| Area | Family | Here | Tests | Runs | Suite |
-|---|---|---|---|---|---|
-| Sign-in and logout (`LOGIN`, `LOGOUT`) | 4 | 4 | 4 | 7 | smoke, regression |
-| Inventory (`INV`) | 3 | 3 | 3 | 6 | smoke, regression |
-| Cart (`CART`) | 2 | 1 | 1 | 1 | regression |
-| Checkout (`CHECKOUT`) | 3 | 3 | 3 | 5 | smoke, regression |
-| Items, hybrid (`ITEMS`) | 1 | 1 | 1 | 1 | regression |
-| Live smoke (`LIVE`) | 8 | 4 | 4 | 17 | live |
-| Deliberate-failure demo (`DEMO`) | 1 | 1 | 3 | 3 | demo-failure |
-| **Total** | **22** | **17** | **19** | **40** | |
-
-`FEAT-CART-02` (the cart survives navigation) and the other four live checks are covered by the
-UI flagship.
+The same: feature IDs, the evidence layout (`run-evidence/<repo>/<run-id>/`, `run-summary.json`
+schema 1, failure bundles) and the run gallery page are shared with the flagships, and Allure sorts
+failures into the flagships' triage categories. Not here: the triage, self-healing and dashboard
+tools; for those see the [API flagship](https://github.com/kesireddy-kishore-29/restassured-testng-api-Dotstrap-Automation#self-healing-and-triage)
+and the [UI flagship](https://github.com/kesireddy-kishore-29/playwright-typescript-ui-Dotstrap-Automation#self-healing-and-triage).
 
 ## Design decisions
 
@@ -109,56 +181,35 @@ UI flagship.
 - The live smoke is a polite, read-only visitor ([ADR 5](docs/adr/0005-live-smoke-policy.md)).
 - Test ids first, then id or name; roles and names are checked, not searched ([ADR 6](docs/adr/0006-test-ids-then-accessible-checks.md)).
 
-## Failure evidence
+All decisions: [docs/adr/](docs/adr/). Every document: [docs/](docs/README.md).
 
-`RECORD_MODE` decides how much each test keeps: `failures` (the default), `all` (nightly and local
-analysis), `off`. A kept attempt has a video stitched from a screenshot after every page action,
-the viewport and full-page screenshots, the redacted page source, the console log, a network log
-from Chrome's performance log (no headers) and `meta.json`. A failed test also gets a failure
-bundle (every attempt and a README) and a zip; the run gets `run-summary.json`,
-`flaky-report.json`, a gallery page (the same page as the flagships) and a step summary.
-
-The `demo-failure` suite fails on purpose. A bundle from a real run of it, with both attempts'
-videos, is in [docs/examples/failure-evidence](docs/examples/failure-evidence/); Allure sorts the
-three failures into `LOCATOR_DRIFT`, `PRODUCT_BUG` and `TIMING`
-([screenshot](docs/examples/allure/categories.png)).
-
-## Real-world origin
+## Real-world origin and family of repos
 
 The scenarios come from the author's own production project, [dotstrap](https://dotstrap.com):
 reusing a signed-in session instead of signing in per test, seeding data through the API and
 proving it gone afterwards, and reading what a public page really renders at four widths instead of
 trusting a 200. They are rebuilt from scratch against a public demo shop and the UI flagship's
-self-hosted app; no dotstrap code, configuration or data is used.
+self-hosted app; no dotstrap code, configuration or data is used. The only contact with dotstrap
+itself is the live smoke: public pages only, no sign-in, no forms, one browser at a time, a user
+agent that names this project, never gating a merge.
 
-The only contact with dotstrap itself is the live smoke: public pages only, no sign-in, no forms,
-no data created, no calls to its backend, one browser at a time, a user agent that names this
-project, never gating a merge. Its evidence is never published or committed.
+| Repository | Role |
+|---|---|
+| [restassured-testng-api-Dotstrap-Automation](https://github.com/kesireddy-kishore-29/restassured-testng-api-Dotstrap-Automation) | API flagship: contract, functional, security and resilience suites, triage, governed self-healing, a health dashboard |
+| [playwright-typescript-ui-Dotstrap-Automation](https://github.com/kesireddy-kishore-29/playwright-typescript-ui-Dotstrap-Automation) | UI flagship, where the Sauce Demo scenarios, the self-hosted app and the full live smoke come from |
+| **selenium-java-testng-ui-Dotstrap-Automation** (this one) | The same Sauce Demo scenarios in Selenium 4 and Java, same feature IDs |
+| [Python-pytest-playwright-Dotstrap-Automation](https://github.com/kesireddy-kishore-29/Python-pytest-playwright-Dotstrap-Automation) | API and UI tests in Python with pytest and Playwright for Python |
 
-## Family of repos
+## Known limitations
 
-- [**restassured-testng-api-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/restassured-testng-api-Dotstrap-Automation): the API flagship in Java with REST Assured and TestNG: contract, functional, security and resilience suites, triage, governed self-healing and a health dashboard.
-- [**playwright-typescript-ui-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/playwright-typescript-ui-Dotstrap-Automation): the UI flagship in TypeScript with Playwright, where the Sauce Demo scenarios, the self-hosted app and the full live smoke come from.
-- **selenium-java-testng-ui-Dotstrap-Automation** (this one): the same Sauce Demo scenarios in Selenium 4 and Java, with the same feature IDs.
-- [**Python-pytest-playwright-Dotstrap-Automation**](https://github.com/kesireddy-kishore-29/Python-pytest-playwright-Dotstrap-Automation): API and UI tests in Python with pytest and Playwright for Python.
+- The workflows have not run on GitHub yet.
+- Selenium Grid video (`VIDEO_MODE=grid`) has never run: Docker could not run on the build machine.
+- Chrome only; Firefox and Edge are not wired in. Run on Windows 11 only so far.
+- In CI the hybrid test runs only when the repository variables point at the UI flagship; otherwise
+  it is skipped.
 
-## How to run
+Details: [docs/known-issues.md](docs/known-issues.md).
 
-You need Java 21 and Chrome; Selenium Manager fetches the matching driver. ffmpeg on the `PATH`
-turns frames into videos (without it, the frames are kept as screenshots).
+## Author
 
-```bash
-./mvnw verify -Dsuite=unit           # format check, Checkstyle, compile, unit tests
-./mvnw test -Dsuite=smoke            # three journeys on Sauce Demo
-./mvnw test -Dsuite=regression       # everything but live and demo; the hybrid test skips
-                                     # unless the UI flagship's app runs on :4173
-./mvnw test -Dsuite=live             # dotstrap.com public pages, one browser
-./mvnw test -Dsuite=demo-failure     # fails on purpose
-scripts/allure-report.sh             # Allure with trend history
-```
-
-Switches: `RECORD_MODE=failures|all|off`, `RUN_ID=<id>`, `TEST_RETRIES=0..2`,
-`VIDEO_MODE=stitch|grid|off` (with `GRID_URL`), `-Pci` for the CI profile; any configuration key as
-an environment variable (`sauce.baseUrl` → `SAUCE_BASE_URL`). Evidence lands in
-`run-evidence/selenium-java-testng-ui-Dotstrap-Automation/<run-id>/`. More in the [test strategy](docs/test-strategy.md),
-[locator policy](docs/locator-policy.md) and [known issues](docs/known-issues.md).
+[kesireddy-kishore-29](https://github.com/kesireddy-kishore-29) on GitHub.
