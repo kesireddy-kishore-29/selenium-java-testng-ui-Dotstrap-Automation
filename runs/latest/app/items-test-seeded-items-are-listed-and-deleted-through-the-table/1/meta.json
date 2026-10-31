@@ -1,0 +1,38 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-41189206853-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "test" : {
+    "id" : "com.qaautomation.selenium.tests.app.ItemsTest#seededItemsAreListedAndDeletedThroughTheTable",
+    "title" : "items seeded through the API are listed; one deleted in the UI leaves the API",
+    "suite" : "app",
+    "featureIds" : [ "FEAT-ITEMS-01" ],
+    "tags" : [ "regression" ],
+    "status" : "skipped",
+    "durationMs" : 13933,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:19.468993477Z",
+    "finishedAt" : "2026-10-31T09:35:33.402940267Z",
+    "error" : {
+      "type" : "org.testng.SkipException",
+      "message" : "The UI flagship's sut-ui is not reachable at http://localhost:4173 (start it with: cd playwright-typescript-ui-Dotstrap-Automation && npm run sut)",
+      "stack" : "org.testng.SkipException: The UI flagship's sut-ui is not reachable at http://localhost:4173 (start it with: cd playwright-typescript-ui-Dotstrap-Automation && npm run sut)\n\tat com.qaautomation.selenium.clients.AppAccount.createOrSkip(AppAccount.java:36)\n\tat com.qaautomation.selenium.tests.app.ItemsTest.seededItemsAreListedAndDeletedThroughTheTable(ItemsTest.java:30)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)\n\tat org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)\n\tat org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)\n\tat org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)\n\tat org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)\n\tat org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)\n\tat org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)\n\tat org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)"
+    },
+    "evidence" : {
+      "dir" : "app/items-test-seeded-items-are-listed-and-deleted-through-the-table/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png" ]
+    }
+  },
+  "environment" : {
+    "browser" : "chrome",
+    "headless" : true,
+    "window" : "1366x900",
+    "videoMode" : "stitch",
+    "os" : "Linux 7.0.0-1017-azure",
+    "java" : "21.0.13"
+  },
+  "notes" : [ "no page action was recorded, so there is no video" ]
+}

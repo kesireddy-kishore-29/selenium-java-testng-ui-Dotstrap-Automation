@@ -1,0 +1,33 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-41189206853-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "test" : {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#invalidCredentialsAreRefused[3]",
+    "title" : "invalid credentials are refused with a specific message [empty password]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3745,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:51.812111883Z",
+    "finishedAt" : "2026-10-31T09:35:55.557782641Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-invalid-credentials-are-refused-3/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  },
+  "environment" : {
+    "browser" : "chrome",
+    "headless" : true,
+    "window" : "1366x900",
+    "videoMode" : "stitch",
+    "os" : "Linux 7.0.0-1017-azure",
+    "java" : "21.0.13"
+  },
+  "notes" : [ ]
+}

@@ -1,0 +1,355 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-41189206853-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "startedAt" : "2026-10-31T09:35:19.292108016Z",
+  "finishedAt" : "2026-10-31T09:35:58.628331008Z",
+  "durationMs" : 39336,
+  "environment" : {
+    "testEnv" : "ci",
+    "sauceBaseUrl" : "https://www.saucedemo.com",
+    "appBaseUrl" : "http://localhost:4173",
+    "browser" : "chrome",
+    "headless" : true,
+    "videoMode" : "stitch",
+    "java" : "21.0.13",
+    "os" : "Linux 7.0.0-1017-azure",
+    "recordMode" : "all"
+  },
+  "totals" : {
+    "total" : 20,
+    "passed" : 19,
+    "failed" : 0,
+    "skipped" : 1,
+    "flaky" : 0,
+    "quarantined" : 0
+  },
+  "tests" : [ {
+    "id" : "com.qaautomation.selenium.tests.app.ItemsTest#seededItemsAreListedAndDeletedThroughTheTable",
+    "title" : "items seeded through the API are listed; one deleted in the UI leaves the API",
+    "suite" : "app",
+    "featureIds" : [ "FEAT-ITEMS-01" ],
+    "tags" : [ "regression" ],
+    "status" : "skipped",
+    "durationMs" : 13933,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:19.468993477Z",
+    "finishedAt" : "2026-10-31T09:35:33.402940267Z",
+    "error" : {
+      "type" : "org.testng.SkipException",
+      "message" : "The UI flagship's sut-ui is not reachable at http://localhost:4173 (start it with: cd playwright-typescript-ui-Dotstrap-Automation && npm run sut)",
+      "stack" : "org.testng.SkipException: The UI flagship's sut-ui is not reachable at http://localhost:4173 (start it with: cd playwright-typescript-ui-Dotstrap-Automation && npm run sut)\n\tat com.qaautomation.selenium.clients.AppAccount.createOrSkip(AppAccount.java:36)\n\tat com.qaautomation.selenium.tests.app.ItemsTest.seededItemsAreListedAndDeletedThroughTheTable(ItemsTest.java:30)\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)\n\tat org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:697)\n\tat org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)\n\tat org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)\n\tat org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1005)\n\tat org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)\n\tat org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)\n\tat org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)\n\tat java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)\n\tat java.base/java.lang.Thread.run(Thread.java:1583)"
+    },
+    "evidence" : {
+      "dir" : "app/items-test-seeded-items-are-listed-and-deleted-through-the-table/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CartTest#badgeFollowsAddAndRemove",
+    "title" : "adding and removing items keeps the badge count right",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CART-01" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3483,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:55.072644971Z",
+    "finishedAt" : "2026-10-31T09:35:58.556004514Z",
+    "evidence" : {
+      "dir" : "sauce/cart-test-badge-follows-add-and-remove/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#checkoutRefusesMissingField[0]",
+    "title" : "checkout refuses a missing field with a specific message [missing first name, First Name is required]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 7812,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:37.335371752Z",
+    "finishedAt" : "2026-10-31T09:35:45.147745873Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-checkout-refuses-missing-field-0/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#checkoutRefusesMissingField[1]",
+    "title" : "checkout refuses a missing field with a specific message [missing last name, Last Name is required]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 7756,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:37.334458566Z",
+    "finishedAt" : "2026-10-31T09:35:45.090614298Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-checkout-refuses-missing-field-1/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#checkoutRefusesMissingField[2]",
+    "title" : "checkout refuses a missing field with a specific message [missing postal code, Postal Code is required]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 5541,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:45.098321601Z",
+    "finishedAt" : "2026-10-31T09:35:50.639697496Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-checkout-refuses-missing-field-2/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#fullCheckoutCompletes",
+    "title" : "a full checkout completes with a confirmation",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-01" ],
+    "tags" : [ "regression", "smoke" ],
+    "status" : "passed",
+    "durationMs" : 9894,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:37.323609266Z",
+    "finishedAt" : "2026-10-31T09:35:47.218263542Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-full-checkout-completes/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#orderSummaryAddsUp",
+    "title" : "the order summary adds up: item total + tax = total",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-03" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 7832,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:47.233286240Z",
+    "finishedAt" : "2026-10-31T09:35:55.065592191Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-order-summary-adds-up/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#listsEveryProductWithNameAndPrice",
+    "title" : "the inventory lists every product with a name and a price",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-01" ],
+    "tags" : [ "regression", "smoke" ],
+    "status" : "passed",
+    "durationMs" : 17849,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:19.468584804Z",
+    "finishedAt" : "2026-10-31T09:35:37.318195037Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-lists-every-product-with-name-and-price/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#productDetailOpensAndReturns",
+    "title" : "a product detail page opens from the inventory and returns",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-03" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3850,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:33.468016412Z",
+    "finishedAt" : "2026-10-31T09:35:37.318212094Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-product-detail-opens-and-returns/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#sortingOrdersTheProducts[0]",
+    "title" : "sorting orders the products [Name (A to Z)]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 5463,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:37.333187274Z",
+    "finishedAt" : "2026-10-31T09:35:42.797103687Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-sorting-orders-the-products-0/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#sortingOrdersTheProducts[1]",
+    "title" : "sorting orders the products [Name (Z to A)]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 5681,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:37.332028721Z",
+    "finishedAt" : "2026-10-31T09:35:43.013607852Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-sorting-orders-the-products-1/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#sortingOrdersTheProducts[2]",
+    "title" : "sorting orders the products [Price (low to high)]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 4947,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:42.806577852Z",
+    "finishedAt" : "2026-10-31T09:35:47.753871879Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-sorting-orders-the-products-2/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#sortingOrdersTheProducts[3]",
+    "title" : "sorting orders the products [Price (high to low)]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 4759,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:43.023588003Z",
+    "finishedAt" : "2026-10-31T09:35:47.782593414Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-sorting-orders-the-products-3/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#invalidCredentialsAreRefused[0]",
+    "title" : "invalid credentials are refused with a specific message [wrong password]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3972,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:47.790042864Z",
+    "finishedAt" : "2026-10-31T09:35:51.762757717Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-invalid-credentials-are-refused-0/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#invalidCredentialsAreRefused[1]",
+    "title" : "invalid credentials are refused with a specific message [unknown user]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 4013,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:47.795697101Z",
+    "finishedAt" : "2026-10-31T09:35:51.809165166Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-invalid-credentials-are-refused-1/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#invalidCredentialsAreRefused[2]",
+    "title" : "invalid credentials are refused with a specific message [empty username]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 4932,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:51.770578074Z",
+    "finishedAt" : "2026-10-31T09:35:56.703108522Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-invalid-credentials-are-refused-2/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#invalidCredentialsAreRefused[3]",
+    "title" : "invalid credentials are refused with a specific message [empty password]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3745,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:51.812111883Z",
+    "finishedAt" : "2026-10-31T09:35:55.557782641Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-invalid-credentials-are-refused-3/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#lockedOutUserIsRefused",
+    "title" : "a locked-out user is refused with the lock-out message",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-03" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 3123,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:50.650145818Z",
+    "finishedAt" : "2026-10-31T09:35:53.773236491Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-locked-out-user-is-refused/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#validCredentialsReachTheInventory",
+    "title" : "valid credentials reach the inventory",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-01" ],
+    "tags" : [ "regression", "smoke" ],
+    "status" : "passed",
+    "durationMs" : 4003,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:53.804543708Z",
+    "finishedAt" : "2026-10-31T09:35:57.808244412Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-valid-credentials-reach-the-inventory/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  }, {
+    "id" : "com.qaautomation.selenium.tests.sauce.LogoutTest#logoutEndsTheSession",
+    "title" : "logging out returns to sign-in and the inventory is no longer reachable",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGOUT-01" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 17849,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:19.468585960Z",
+    "finishedAt" : "2026-10-31T09:35:37.317750407Z",
+    "evidence" : {
+      "dir" : "sauce/logout-test-logout-ends-the-session/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  } ]
+}

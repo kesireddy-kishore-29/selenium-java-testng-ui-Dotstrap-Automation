@@ -1,0 +1,33 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-41189206853-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "test" : {
+    "id" : "com.qaautomation.selenium.tests.sauce.InventoryTest#sortingOrdersTheProducts[2]",
+    "title" : "sorting orders the products [Price (low to high)]",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-INV-02" ],
+    "tags" : [ "regression" ],
+    "status" : "passed",
+    "durationMs" : 4947,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-10-31T09:35:42.806577852Z",
+    "finishedAt" : "2026-10-31T09:35:47.753871879Z",
+    "evidence" : {
+      "dir" : "sauce/inventory-test-sorting-orders-the-products-2/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  },
+  "environment" : {
+    "browser" : "chrome",
+    "headless" : true,
+    "window" : "1366x900",
+    "videoMode" : "stitch",
+    "os" : "Linux 7.0.0-1017-azure",
+    "java" : "21.0.13"
+  },
+  "notes" : [ ]
+}
