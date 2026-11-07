@@ -1,0 +1,97 @@
+[ {
+  "requestId" : "767BCE929B8B7FD0A846DE1736A6BEBD",
+  "method" : "GET",
+  "url" : "https://www.saucedemo.com/",
+  "type" : "Document",
+  "status" : 200,
+  "mimeType" : "text/html"
+}, {
+  "requestId" : "4036.2",
+  "method" : "GET",
+  "url" : "https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500",
+  "type" : "Stylesheet",
+  "status" : 200,
+  "mimeType" : "text/css"
+}, {
+  "requestId" : "4036.3",
+  "method" : "GET",
+  "url" : "https://www.saucedemo.com/assets/index-DnLqFcJI.js",
+  "type" : "Script",
+  "status" : 200,
+  "mimeType" : "application/javascript"
+}, {
+  "requestId" : "4036.4",
+  "method" : "GET",
+  "url" : "https://www.saucedemo.com/assets/index-aSZoiKGF.css",
+  "type" : "Stylesheet",
+  "status" : 200,
+  "mimeType" : "text/css"
+}, {
+  "requestId" : "4036.8",
+  "method" : "GET",
+  "url" : "https://www.saucedemo.com/manifest.json",
+  "type" : "Manifest",
+  "status" : 200,
+  "mimeType" : "application/json"
+}, {
+  "requestId" : "E01DE2E9582191418CBBEF2A0218B588",
+  "method" : "OPTIONS",
+  "url" : "https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=****",
+  "type" : "Other",
+  "status" : 200,
+  "mimeType" : ""
+}, {
+  "requestId" : "0EBF4105AE2190D1A0494B625ED4C736",
+  "method" : "OPTIONS",
+  "url" : "https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&token=****",
+  "type" : "Other",
+  "status" : 200,
+  "mimeType" : ""
+}, {
+  "requestId" : "4036.17",
+  "method" : "POST",
+  "url" : "https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=****",
+  "type" : "Fetch",
+  "status" : 401,
+  "mimeType" : "application/json"
+}, {
+  "requestId" : "4036.18",
+  "method" : "POST",
+  "url" : "https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&token=****",
+  "type" : "Fetch",
+  "status" : 401,
+  "mimeType" : "application/json"
+}, {
+  "requestId" : "4036.14",
+  "method" : "GET",
+  "url" : "https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K4.woff2",
+  "type" : "Font",
+  "status" : 200,
+  "mimeType" : "font/woff2"
+}, {
+  "requestId" : "4036.10",
+  "method" : "GET",
+  "url" : "https://fonts.gstatic.com/s/dmmono/v16/aFTU7PB1QTsUX8KYthqQBA.woff2",
+  "type" : "Font",
+  "status" : 200,
+  "mimeType" : "font/woff2"
+}, {
+  "requestId" : "4036.12",
+  "method" : "GET",
+  "url" : "https://fonts.gstatic.com/s/dmmono/v16/aFTR7PB1QTsUX8KYvumzEYOtbQ.woff2",
+  "type" : "Font",
+  "status" : 200,
+  "mimeType" : "font/woff2"
+}, {
+  "requestId" : "4036.19",
+  "method" : "GET",
+  "url" : "https://www.saucedemo.com/favicon.ico",
+  "type" : "Other",
+  "status" : 200,
+  "mimeType" : "image/vnd.microsoft.icon"
+}, {
+  "requestId" : "4036.20",
+  "method" : "POST",
+  "url" : "https://submit.backtrace.io/UNIVERSE/TOKEN/json",
+  "type" : "Fetch"
+} ]
