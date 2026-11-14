@@ -1,0 +1,33 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-43584617448-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "test" : {
+    "id" : "com.qaautomation.selenium.tests.sauce.LoginTest#validCredentialsReachTheInventory",
+    "title" : "valid credentials reach the inventory",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-LOGIN-01" ],
+    "tags" : [ "regression", "smoke" ],
+    "status" : "passed",
+    "durationMs" : 4754,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-11-14T10:18:53.478247310Z",
+    "finishedAt" : "2026-11-14T10:18:58.232790858Z",
+    "evidence" : {
+      "dir" : "sauce/login-test-valid-credentials-reach-the-inventory/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  },
+  "environment" : {
+    "browser" : "chrome",
+    "headless" : true,
+    "window" : "1366x900",
+    "videoMode" : "stitch",
+    "os" : "Linux 7.0.0-1019-azure",
+    "java" : "21.0.13"
+  },
+  "notes" : [ ]
+}
