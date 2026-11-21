@@ -1,0 +1,33 @@
+{
+  "schemaVersion" : 1,
+  "repo" : "selenium-java-testng-ui-Dotstrap-Automation",
+  "runId" : "nightly-44896652192-1",
+  "gitSha" : "253add9915a91210cd7134765e483a2dc2454596",
+  "recordMode" : "all",
+  "test" : {
+    "id" : "com.qaautomation.selenium.tests.sauce.CheckoutTest#fullCheckoutCompletes",
+    "title" : "a full checkout completes with a confirmation",
+    "suite" : "sauce",
+    "featureIds" : [ "FEAT-CHECKOUT-01" ],
+    "tags" : [ "regression", "smoke" ],
+    "status" : "passed",
+    "durationMs" : 4505,
+    "attempt" : 1,
+    "quarantined" : false,
+    "startedAt" : "2026-11-21T10:57:03.030055840Z",
+    "finishedAt" : "2026-11-21T10:57:07.535454321Z",
+    "evidence" : {
+      "dir" : "sauce/checkout-test-full-checkout-completes/1",
+      "files" : [ "console.log", "fullpage.png", "meta.json", "network-log.json", "page-source.html", "screenshot.png", "video.webm" ]
+    }
+  },
+  "environment" : {
+    "browser" : "chrome",
+    "headless" : true,
+    "window" : "1366x900",
+    "videoMode" : "stitch",
+    "os" : "Linux 7.0.0-1020-azure",
+    "java" : "21.0.13"
+  },
+  "notes" : [ ]
+}
